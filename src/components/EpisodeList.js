@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
-import CharacterCard from './CharacterCard';
+import EpisodeCard from './EpisodeCard';
 import PageButton from './PageButton';
 
 const Header = styled.div`
@@ -15,10 +15,10 @@ const Header = styled.div`
   }
 `;
 
-export default function CharacterList() {
+export default function EpisodeList() {
   const [pages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [characters, setCharacters] = useState([]);
+  const [episodes, setEpisodes] = useState([]);
   const [maxpage, setMaxpage] = useState(1);
 
   useEffect(() => {
@@ -27,17 +27,14 @@ export default function CharacterList() {
       currentPage === page && (exists = true);
     });
     if (!exists) {
-      Axios.get(
-        `https://rickandmortyapi.com/api/character/?page=${currentPage}`
-      )
+      Axios.get(`https://rickandmortyapi.com/api/episode/?page=${currentPage}`)
         .then(res => {
           setMaxpage(res.data.info.pages);
-          setCharacters(list => [
+          setEpisodes(list => [
             ...list,
             {
               next: res.data.info.next,
               previous: res.data.info.previous,
-              maxpage: res.data.info.pages,
               results: res.data.results
             }
           ]);
@@ -48,7 +45,7 @@ export default function CharacterList() {
   }, [currentPage]);
 
   return (
-    <section className='character-list grid-view'>
+    <section className='episode-list grid-view'>
       <Header>
         <h2>Current Page: {currentPage}</h2>
         <div>
@@ -66,9 +63,9 @@ export default function CharacterList() {
         </div>
       </Header>
       <div className='grid-view'>
-        {characters[currentPage - 1] && characters[currentPage - 1].results ? (
-          characters[currentPage - 1].results.map((character, index) => {
-            return <CharacterCard key={index} character={character} />;
+        {episodes[currentPage - 1] && episodes[currentPage - 1].results ? (
+          episodes[currentPage - 1].results.map((episode, index) => {
+            return <EpisodeCard key={index} episode={episode} />;
           })
         ) : (
           <div className='grid-view'>
