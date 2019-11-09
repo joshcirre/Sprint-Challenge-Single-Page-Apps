@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import CharacterCard from './CharacterCard';
 import { Link } from 'react-router-dom';
 
 export default function CharacterList() {
@@ -19,8 +20,8 @@ export default function CharacterList() {
         <Link to={'/character-list/search'}>Search</Link>
       </nav>
 
-      <Container className='character-list'>
-        <Row className='entry'>
+      <section className='character-list'>
+        <div className='entry'>
           {characterData.map(charac => {
             return (
               <CharacterCard
@@ -32,8 +33,8 @@ export default function CharacterList() {
               />
             );
           })}
-        </Row>
-      </Container>
+        </div>
+      </section>
     </>
   );
 }
