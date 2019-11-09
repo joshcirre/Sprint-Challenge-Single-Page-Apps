@@ -72,7 +72,7 @@ export default function CharacterList() {
           })
         ) : (
           <div className='grid-view'>
-            <Loader type='Watch' color='gray' height={300} width={300} />
+            <Loader type='Rings' color='gray' height={300} width={300} />
           </div>
         )}
       </div>
