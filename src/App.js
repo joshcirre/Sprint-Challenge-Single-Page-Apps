@@ -7,6 +7,7 @@ import CharacterList from './components/CharacterList';
 import LocationsList from './components/LocationsList';
 import EpisodeList from './components/EpisodeList';
 import SearchForm from './components/SearchForm';
+import { ThemeProvider } from 'emotion-theming';
 
 export default function App() {
   return (

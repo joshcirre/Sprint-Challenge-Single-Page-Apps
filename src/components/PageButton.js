@@ -1,10 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Button = styled.button`
-  margin: 1rem;
-  padding: 0.2rem;
-`;
+import { Button } from '@chakra-ui/core';
 
 export default function({ direction, currentPage, setCurrentPage, maxpage }) {
   const handleClick = () => {
@@ -16,6 +11,9 @@ export default function({ direction, currentPage, setCurrentPage, maxpage }) {
   const isNextDisabled = direction === 'next' && currentPage >= maxpage;
   return (
     <Button
+      variantColor='teal'
+      variant='outline'
+      size='lg'
       onClick={handleClick}
       disabled={isNextDisabled || isPreviousDisabled}
     >
