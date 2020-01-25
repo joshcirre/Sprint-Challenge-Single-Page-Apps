@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { withFormik, Form, Field } from 'formik';
-import * as yup from 'yup';
-import axios from 'axios';
-import styled from 'styled-components';
-import Loader from 'react-loader-spinner';
-import CharacterCard from './CharacterCard';
+import React, { useState, useEffect } from "react";
+import { withFormik, Form, Field } from "formik";
+import * as yup from "yup";
+import axios from "axios";
+import styled from "styled-components";
+import Loader from "react-loader-spinner";
+import CharacterCard from "./CharacterCard";
 
 const Style = styled.div`
   display: flex;
@@ -61,23 +61,23 @@ function SearchForm({ status, errors, touched, isSubmitting }) {
     <Style>
       <Form>
         <Field
-          type='text'
-          placeholder='Type in the name of the character you are looking for...'
-          name='name'
+          type="text"
+          placeholder="Type in the character you are looking for..."
+          name="name"
         />
-        <button type='submit' disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting}>
           Submit
         </button>
       </Form>
       {characters.length > 0 && (
-        <SearchList className='grid-view'>
+        <SearchList className="grid-view">
           {characters.map((character, index) =>
             index < 5 ? (
               <CharacterCard key={index} character={character} />
             ) : (
               index < 5 && (
-                <div className='grid-view'>
-                  <Loader type='Rings' color='gray' height={300} width={300} />
+                <div className="grid-view">
+                  <Loader type="Rings" color="gray" height={300} width={300} />
                 </div>
               )
             )
@@ -91,11 +91,11 @@ function SearchForm({ status, errors, touched, isSubmitting }) {
 export default withFormik({
   mapPropsToValues({ name }) {
     return {
-      name: name || ''
+      name: name || ""
     };
   },
   validationSchema: yup.object().shape({
-    name: yup.string().required('Please type in a character name.')
+    name: yup.string().required("Please type in a character name.")
   }),
   handleSubmit({ name }, { setStatus, resetForm, setSubmitting }) {
     axios
